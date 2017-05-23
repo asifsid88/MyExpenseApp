@@ -1,26 +1,51 @@
 package com.asifsid88.myexpense.app;
 
-import android.content.Intent;
+import android.app.ListActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.EditText;
+import android.view.Menu;
 
-public class MainActivity extends AppCompatActivity {
+import com.asifsid88.myexpense.app.adapter.ExpenseAdapter;
+import com.asifsid88.myexpense.app.model.Expense;
 
-    public static final String EXTRA_MESSAGE = "com.asifsid88.myexpense.app.MESSAGE";
+import java.util.LinkedList;
+import java.util.List;
+
+public class MainActivity extends ListActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        ExpenseAdapter adapter = new ExpenseAdapter(this, getExpenseList());
+        setListAdapter(adapter);
+
+
     }
 
-    public void sendMessage(View view) {
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivity(intent);
+
+    /**
+     * TODO: Get the expense details via REST call.
+     *
+     */
+    private List<Expense> getExpenseList() {
+        final List<Expense> expenseList = new LinkedList<>();
+
+        for(int i=1; i<=10; i++) {
+            expenseList.add(getExpense(i));
+        }
+
+        return expenseList;
     }
+
+    private Expense getExpense(int expenseId) {
+        Expense expense = new Expense();
+        expense.setExpenseType(String.valueOf(expenseId));
+        expense.setAmount(String.valueOf(expenseId * 100));
+        expense.setExpenseType("Cash");
+        expense.setDescription("Description: " + expenseId);
+        expense.setComment("Comment: " + expenseId);
+
+        return expense;
+    }
+
 }

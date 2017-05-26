@@ -5,10 +5,13 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <fragment
-        android:id="@+id/fragment1"
-        android:name="com.asifsid88.myexpense.app.fragments.ExpenseFragment"
+    <TableLayout
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent" />
+        android:layout_height="fill_parent"
+        android:id="@+id/tablelayout"
+        android:stretchColumns="*"
+        android:layout_margin="25dp" >
+
+    </TableLayout>
 
 </LinearLayout>

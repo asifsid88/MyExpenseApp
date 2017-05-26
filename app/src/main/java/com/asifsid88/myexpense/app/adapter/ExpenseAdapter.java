@@ -29,12 +29,24 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
     }
 
     public ExpenseAdapter(Activity context, List<Expense> expenseList) {
-        super(context, R.layout.activity_main, expenseList);
+        super(context, android.R.layout.simple_list_item_2, expenseList);
         this.context = context;
         this.expenseList = expenseList;
     }
 
+    @NonNull
     @Override
+    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+        View view = super.getView(position, convertView, parent);
+        TextView text1 = (TextView) view.findViewById(android.R.id.text1);
+        TextView text2 = (TextView) view.findViewById(android.R.id.text2);
+
+        text1.setText("1");
+        text2.setText("2");
+        return view;
+    }
+
+    /*@Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
 
@@ -51,31 +63,5 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
         viewHolder.text.setText("this is the position:== " + expenseList.get(position));
 
         return view;
-    }
-
-    /*
-    @Override
-    public int getCount() {
-        return 3;
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view = convertView;
-
-        if(view == null) {
-            LayoutInflater inflater = context
-        }
-
     }*/
 }

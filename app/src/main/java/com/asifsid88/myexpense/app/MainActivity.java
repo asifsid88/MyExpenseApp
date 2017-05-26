@@ -1,18 +1,27 @@
 package com.asifsid88.myexpense.app;
 
-import android.app.ListActivity;
 import android.os.Bundle;
-import android.view.Menu;
+import android.support.v7.app.AppCompatActivity;
 
-import com.asifsid88.myexpense.app.adapter.ExpenseAdapter;
 import com.asifsid88.myexpense.app.model.Expense;
 
 import java.util.LinkedList;
 import java.util.List;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+    }
+
+
+
+
+
+    /* @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
@@ -21,7 +30,7 @@ public class MainActivity extends ListActivity {
 
 
     }
-
+*/
 
     /**
      * TODO: Get the expense details via REST call.

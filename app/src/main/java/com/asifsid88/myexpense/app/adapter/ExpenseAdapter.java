@@ -1,9 +1,10 @@
 package com.asifsid88.myexpense.app.adapter;
 
 import android.app.Activity;
-import android.content.Context;
+import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,44 +25,42 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
     private final Activity context;
     private final List<Expense> expenseList;
 
-    static class ViewHolder {
-        public TextView text;
+    private static class ExpenseViewHolder {
+        TextView expenseAmount;
+        TextView expenseDetail;
     }
 
     public ExpenseAdapter(Activity context, List<Expense> expenseList) {
-        super(context, android.R.layout.simple_list_item_2, expenseList);
+        super(context, R.layout.individual_expense, expenseList);
         this.context = context;
         this.expenseList = expenseList;
     }
 
     @NonNull
     @Override
-    public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        View view = super.getView(position, convertView, parent);
-        TextView text1 = (TextView) view.findViewById(android.R.id.text1);
-        TextView text2 = (TextView) view.findViewById(android.R.id.text2);
-
-        text1.setText("1");
-        text2.setText("2");
-        return view;
-    }
-
-    /*@Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
         View view = convertView;
-
+        ExpenseViewHolder expenseViewHolder;
         if(view == null) {
             LayoutInflater inflater = context.getLayoutInflater();
-            view = inflater.inflate(R.layout.activity_main, null);
+            view = inflater.inflate(R.layout.individual_expense, null);
 
-            ViewHolder viewHolder = new ViewHolder();
-            viewHolder.text = (TextView) view.findViewById(R.id.label);
-            view.setTag(viewHolder);
+            expenseViewHolder = new ExpenseViewHolder();
+            expenseViewHolder.expenseAmount = (TextView) view.findViewById(R.id.expense_amount);
+            expenseViewHolder.expenseDetail = (TextView) view.findViewById(R.id.expense_detail);
+            view.setTag(expenseViewHolder);
+        } else {
+            expenseViewHolder = (ExpenseViewHolder) view.getTag();
         }
 
-        ViewHolder viewHolder = (ViewHolder) view.getTag();
-        viewHolder.text.setText("this is the position:== " + expenseList.get(position));
+        Expense expense = expenseList.get(position);
+        expenseViewHolder.expenseAmount.setText(expense.getAmount());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            expenseViewHolder.expenseDetail.setText(Html.fromHtml(expense.getExpenseDetail(), Html.FROM_HTML_MODE_LEGACY));
+        } else {
+            expenseViewHolder.expenseDetail.setText(Html.fromHtml(expense.getExpenseDetail()));
+        }
 
         return view;
-    }*/
+    }
 }

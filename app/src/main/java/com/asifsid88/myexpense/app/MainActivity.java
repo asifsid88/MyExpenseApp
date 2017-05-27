@@ -14,23 +14,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
-
-
-
-
-    /* @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        ExpenseAdapter adapter = new ExpenseAdapter(this, getExpenseList());
-        setListAdapter(adapter);
-
-
-    }
-*/
 
     /**
      * TODO: Get the expense details via REST call.
@@ -51,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
         expense.setExpenseType(String.valueOf(expenseId));
         expense.setAmount(String.valueOf(expenseId * 100));
         expense.setExpenseType("Cash");
-        expense.setDescription("Description: " + expenseId);
+        expense.setDescription("The transaction was done for the lunch");
         expense.setComment("Comment: " + expenseId);
 
         return expense;

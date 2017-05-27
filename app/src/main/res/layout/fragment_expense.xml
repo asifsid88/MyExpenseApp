@@ -5,13 +5,10 @@
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
-    <TableLayout
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:id="@+id/tablelayout"
-        android:stretchColumns="*"
-        android:layout_margin="25dp" >
-
-    </TableLayout>
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@android:id/list" >
+    </ListView>
 
 </LinearLayout>

@@ -38,6 +38,10 @@ public class ExpenseDetailActivity extends AppCompatActivity {
         this.onBackPressed();
     }
 
+    public void edit(View view) {
+
+    }
+
     @Override
     public boolean onSupportNavigateUp(){
         finish();

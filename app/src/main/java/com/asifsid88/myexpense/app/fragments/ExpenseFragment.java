@@ -77,7 +77,7 @@ public class ExpenseFragment extends ListFragment {
         expense.setExpenseType("Paytm");
         expense.setDescription("The transaction was done for the lunch");
         expense.setComment("Comment: " + expenseId);
-        expense.setDate("21st May 2017");
+        expense.setDate("21/05/2017");
 
         return expense;
     }

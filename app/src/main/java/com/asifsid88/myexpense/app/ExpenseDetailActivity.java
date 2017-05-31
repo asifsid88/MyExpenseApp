@@ -22,14 +22,14 @@ public class ExpenseDetailActivity extends AppCompatActivity {
     }
 
     private void inflateLayout(Expense expense) {
-        setTextView(R.id.expense_detail_expense_type, expense.getExpenseType());
-        setTextView(R.id.expense_detail_amount, expense.getAmount());
-        setTextView(R.id.expense_detail_description, expense.getDescription());
-        setTextView(R.id.expense_detail_comment, expense.getComment());
-        setTextView(R.id.expense_detail_expense_date, expense.getDate());
+        setTextViewContent(R.id.expense_detail_expense_type, expense.getExpenseType());
+        setTextViewContent(R.id.expense_detail_amount, expense.getAmount());
+        setTextViewContent(R.id.expense_detail_description, expense.getDescription());
+        setTextViewContent(R.id.expense_detail_comment, expense.getComment());
+        setTextViewContent(R.id.expense_detail_expense_date, expense.getDate());
     }
 
-    private void setTextView(int textViewId, String textValue) {
+    private void setTextViewContent(int textViewId, String textValue) {
         TextView expenseDate = (TextView) findViewById(textViewId);
         expenseDate.setText(textValue);
     }
@@ -39,7 +39,9 @@ public class ExpenseDetailActivity extends AppCompatActivity {
     }
 
     public void edit(View view) {
-
+        Intent intent = new Intent(this, ExpenseDetailEditActivity.class);
+        //intent.putExtra(Constants.EXPENSE_MODEL, expense);
+        startActivity(intent);
     }
 
     @Override

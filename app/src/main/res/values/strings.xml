@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">My Expense</string>
     <string name="top_expenses">Displaying recent <strong>10 expenses</strong></string>
+
+    <!-- ExpenseDetailActivity -->
     <string name="expense_detail_expense_type">Type of Expense</string>
     <string name="expense_detail_amount">Amount</string>
     <string name="expense_detail_description">Description</string>
@@ -9,4 +11,8 @@
     <string name="expense_detail_heading">Expense Detail</string>
     <string name="expense_detail_close_button">Close</string>
     <string name="expense_detail_edit_button">Edit</string>
+
+    <!-- ExpenseDetailEditActivity -->
+    <string name="expense_detail_heading_edit">Edit Expense Detail</string>
+    <string name="expense_detail_update_button">Update</string>
 </resources>

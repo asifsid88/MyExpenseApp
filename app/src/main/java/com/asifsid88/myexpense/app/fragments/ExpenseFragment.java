@@ -52,8 +52,8 @@ public class ExpenseFragment extends ListFragment {
         Expense expense = new Expense();
         expense.setExpenseType(String.valueOf(expenseId));
         expense.setAmount(String.valueOf(expenseId * 10));
-        expense.setExpenseType("Cash");
-        expense.setDescription("Description: " + expenseId);
+        expense.setExpenseType("Paytm");
+        expense.setDescription("The transaction was done for the lunch");
         expense.setComment("Comment: " + expenseId);
         expense.setDate("21st May 2017");
 

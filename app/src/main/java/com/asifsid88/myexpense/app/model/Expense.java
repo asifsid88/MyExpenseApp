@@ -9,6 +9,7 @@ import lombok.Data;
  */
 @Data
 public class Expense implements Serializable {
+    private String expenseId;
     private String expenseType;
     private String amount;
     private String description;

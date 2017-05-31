@@ -33,9 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
     private Expense getExpense(int expenseId) {
         Expense expense = new Expense();
+        expense.setExpenseId(String.valueOf(expenseId));
         expense.setExpenseType(String.valueOf(expenseId));
         expense.setAmount(String.valueOf(expenseId * 100));
-        expense.setExpenseType("Cash");
+        expense.setExpenseType("Paytm");
         expense.setDescription("The transaction was done for the lunch");
         expense.setComment("Comment: " + expenseId);
 

@@ -15,11 +15,11 @@
         />
 
     <TableLayout
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
         <TableRow
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
@@ -34,8 +34,8 @@
                 />
 
             <Spinner
-                android:id="@+id/spinner1"
-                android:layout_width="fill_parent"
+                android:id="@+id/expense_type_spinner"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown"
@@ -88,10 +88,13 @@
                 android:layout_column="1"
                 />
             <EditText
+                android:inputType="textMultiLine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/expense_detail_description"
                 android:layout_column="2"
+                android:minLines="2"
+                android:maxLines="6"
                 />
         </TableRow>
 
@@ -105,10 +108,13 @@
                 android:layout_column="1"
                 />
             <EditText
+                android:inputType="textMultiLine"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/expense_detail_comment"
                 android:layout_column="2"
+                android:minLines="2"
+                android:maxLines="6"
                 />
         </TableRow>
     </TableLayout>

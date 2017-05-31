@@ -10,6 +10,8 @@ import com.asifsid88.myexpense.app.model.Expense;
 
 public class ExpenseDetailActivity extends AppCompatActivity {
 
+    private Expense expense;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -17,11 +19,11 @@ public class ExpenseDetailActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
-        Expense expense = (Expense) intent.getSerializableExtra(Constants.EXPENSE_MODEL);
-        inflateLayout(expense);
+        expense = (Expense) intent.getSerializableExtra(Constants.EXPENSE_MODEL);
+        setLayoutFields();
     }
 
-    private void inflateLayout(Expense expense) {
+    private void setLayoutFields() {
         setTextViewContent(R.id.expense_detail_expense_type, expense.getExpenseType());
         setTextViewContent(R.id.expense_detail_amount, expense.getAmount());
         setTextViewContent(R.id.expense_detail_description, expense.getDescription());
@@ -40,7 +42,7 @@ public class ExpenseDetailActivity extends AppCompatActivity {
 
     public void edit(View view) {
         Intent intent = new Intent(this, ExpenseDetailEditActivity.class);
-        //intent.putExtra(Constants.EXPENSE_MODEL, expense);
+        intent.putExtra(Constants.EXPENSE_MODEL, expense);
         startActivity(intent);
     }
 

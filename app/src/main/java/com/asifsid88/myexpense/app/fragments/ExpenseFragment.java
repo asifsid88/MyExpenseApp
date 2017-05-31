@@ -1,15 +1,19 @@
 package com.asifsid88.myexpense.app.fragments;
 
 import android.app.ListFragment;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 
+import com.asifsid88.myexpense.app.Constants;
+import com.asifsid88.myexpense.app.ExpenseDetailActivity;
 import com.asifsid88.myexpense.app.R;
 import com.asifsid88.myexpense.app.adapter.ExpenseAdapter;
-import com.asifsid88.myexpense.app.listener.ExpenseItemClickListener;
 import com.asifsid88.myexpense.app.model.Expense;
 
 import java.util.LinkedList;
@@ -29,6 +33,24 @@ public class ExpenseFragment extends ListFragment {
         ExpenseAdapter expenseAdapter = new ExpenseAdapter(getActivity(), expenseList);
         setListAdapter(expenseAdapter);
         getListView().setOnItemClickListener(new ExpenseItemClickListener(getActivity(), expenseList));
+    }
+
+    private class ExpenseItemClickListener implements AdapterView.OnItemClickListener {
+
+        private Context parentContext;
+        private List<Expense> expenseList;
+
+        private ExpenseItemClickListener(Context parentContext, List<Expense> expenseList) {
+            this.parentContext = parentContext;
+            this.expenseList = expenseList;
+        }
+
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            Expense expense = expenseList.get(position);
+            Intent intent = new Intent(parentContext, ExpenseDetailActivity.class);
+            intent.putExtra(Constants.EXPENSE_MODEL, expense);
+            parentContext.startActivity(intent);
+        }
     }
 
 

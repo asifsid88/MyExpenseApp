@@ -1,13 +1,13 @@
 package com.asifsid88.myexpense.app;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -65,9 +65,21 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
     }
 
     public void update(View view) {
-        // Get all the information and call the REST API to update the expense
+        Expense updatedExpense = new Expense();
+        updatedExpense.setExpenseId(expense.getExpenseId());
+        updatedExpense.setExpenseType(expenseTypeSelected);
+        updatedExpense.setAmount(getEditTextFieldValue(R.id.expense_detail_amount));
+        updatedExpense.setDescription(getEditTextFieldValue(R.id.expense_detail_description));
+        updatedExpense.setDate(getEditTextFieldValue(R.id.expense_detail_expense_date));
+        updatedExpense.setComment(getEditTextFieldValue(R.id.expense_detail_comment));
 
-        Toast.makeText(this, "selected Expensetype: " + expenseTypeSelected, Toast.LENGTH_LONG).show();
+        // Make the REST call to update the expense
+        Toast.makeText(this, "Updated Expense ==> " + updatedExpense, Toast.LENGTH_LONG).show();
+    }
+
+    private String getEditTextFieldValue(int editTextFieldId) {
+        EditText editText = (EditText) findViewById(editTextFieldId);
+        return editText.getText().toString();
     }
 
     private class ExpenseTypeSpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {

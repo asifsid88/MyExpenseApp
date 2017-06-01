@@ -72,7 +72,7 @@ public class ExpenseFragment extends ListFragment {
 
     private Expense getExpense(int expenseId) {
         Expense expense = new Expense();
-        expense.setExpenseType(String.valueOf(expenseId));
+        expense.setExpenseId(String.valueOf(expenseId));
         expense.setAmount(String.valueOf(expenseId * 10));
         expense.setExpenseType("Paytm");
         expense.setDescription("The transaction was done for the lunch");

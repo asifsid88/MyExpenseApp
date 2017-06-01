@@ -54,7 +54,7 @@ public class ExpenseAdapter extends ArrayAdapter<Expense> {
         }
 
         Expense expense = expenseList.get(position);
-        expenseViewHolder.expenseAmount.setText(expense.getAmount());
+        expenseViewHolder.expenseAmount.setText(expense.getDisplayAmount());
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             expenseViewHolder.expenseDetail.setText(Html.fromHtml(expense.getExpenseDetail(), Html.FROM_HTML_MODE_LEGACY));
         } else {

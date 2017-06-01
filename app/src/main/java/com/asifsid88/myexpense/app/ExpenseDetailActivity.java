@@ -27,7 +27,7 @@ public class ExpenseDetailActivity extends AppCompatActivity {
 
     private void setLayoutFields() {
         setTextViewContent(R.id.expense_detail_expense_type, expense.getExpenseType());
-        setTextViewContent(R.id.expense_detail_amount, expense.getAmount());
+        setTextViewContent(R.id.expense_detail_amount, expense.getDisplayAmount());
         setTextViewContent(R.id.expense_detail_description, expense.getDescription());
         setTextViewContent(R.id.expense_detail_comment, expense.getComment());
         setTextViewContent(R.id.expense_detail_expense_date, expense.getDate());

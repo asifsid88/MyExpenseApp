@@ -38,6 +38,7 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
         setTextViewContent(R.id.expense_detail_amount, expense.getAmount());
         setTextViewContent(R.id.expense_detail_description, expense.getDescription());
         setTextViewContent(R.id.expense_detail_comment, expense.getComment());
+        setTextViewContent(R.id.expense_detail_expense_date, expense.getDate());
         new DatePicker(this, R.id.expense_detail_expense_date, expense.getDate());
     }
 

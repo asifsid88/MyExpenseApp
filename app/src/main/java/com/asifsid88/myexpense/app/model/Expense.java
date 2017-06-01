@@ -16,7 +16,7 @@ public class Expense implements Serializable {
     private String comment;
     private String date;
 
-    public String getAmount() {
+    public String getDisplayAmount() {
         return "Rs. " + this.amount;
     }
 

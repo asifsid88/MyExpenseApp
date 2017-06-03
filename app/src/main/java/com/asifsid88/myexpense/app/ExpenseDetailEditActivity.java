@@ -22,7 +22,7 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
     private ExpenseService expenseService;
 
     public ExpenseDetailEditActivity() {
-        expenseService = new ExpenseService();
+        expenseService = new ExpenseService(this);
     }
 
     @Override

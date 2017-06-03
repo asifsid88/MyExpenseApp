@@ -1,5 +1,7 @@
 package com.asifsid88.myexpense.app.service;
 
+import android.app.Activity;
+
 import com.asifsid88.myexpense.app.model.Expense;
 import com.asifsid88.myexpense.app.service.callbacks.ExpenseServiceCallback;
 import com.asifsid88.myexpense.app.service.callbacks.ICallback;
@@ -13,8 +15,8 @@ public class ExpenseService {
     private ExpenseResponseHandler responseHandler;
     private ICallback callback;
 
-    public ExpenseService() {
-        this.callback = new ExpenseServiceCallback();
+    public ExpenseService(Activity parentContext) {
+        this.callback = new ExpenseServiceCallback(parentContext);
         this.responseHandler = new ExpenseResponseHandler(callback);
     }
 

@@ -39,7 +39,8 @@ public class ExpenseDetailActivity extends AppCompatActivity {
     }
 
     public void close(View view) {
-        this.onBackPressed();
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 
     public void edit(View view) {

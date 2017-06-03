@@ -22,8 +22,10 @@ public class ExpenseServiceCallback implements ICallback {
 
     @Override
     public void execute(boolean success, IModel result) {
-        Intent intent = new Intent(parentContext, ExpenseDetailActivity.class);
-        intent.putExtra(Constants.EXPENSE_MODEL, result);
-        parentContext.startActivity(intent);
+        if(success) {
+            Intent intent = new Intent(parentContext, ExpenseDetailActivity.class);
+            intent.putExtra(Constants.EXPENSE_MODEL, result);
+            parentContext.startActivity(intent);
+        }
     }
 }

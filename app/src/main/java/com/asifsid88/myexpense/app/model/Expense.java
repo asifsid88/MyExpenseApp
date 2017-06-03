@@ -1,14 +1,12 @@
 package com.asifsid88.myexpense.app.model;
 
-import java.io.Serializable;
-
 import lombok.Data;
 
 /**
  * Created by mhussaa on 5/21/17.
  */
 @Data
-public class Expense implements Serializable {
+public class Expense implements IModel {
     private String expenseId;
     private String expenseType;
     private String amount;

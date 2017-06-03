@@ -10,15 +10,20 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.asifsid88.myexpense.app.component.DatePicker;
 import com.asifsid88.myexpense.app.model.Expense;
+import com.asifsid88.myexpense.app.service.ExpenseService;
 
 public class ExpenseDetailEditActivity extends AppCompatActivity {
 
     private Expense expense;
     private String expenseTypeSelected;
+    private ExpenseService expenseService;
+
+    public ExpenseDetailEditActivity() {
+        expenseService = new ExpenseService();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,16 +71,19 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
     }
 
     public void update(View view) {
-        Expense updatedExpense = new Expense();
-        updatedExpense.setExpenseId(expense.getExpenseId());
-        updatedExpense.setExpenseType(expenseTypeSelected);
-        updatedExpense.setAmount(getEditTextFieldValue(R.id.expense_detail_amount));
-        updatedExpense.setDescription(getEditTextFieldValue(R.id.expense_detail_description));
-        updatedExpense.setDate(getEditTextFieldValue(R.id.expense_detail_expense_date));
-        updatedExpense.setComment(getEditTextFieldValue(R.id.expense_detail_comment));
+        expenseService.updateExpense(getUpdatedExpense());
+    }
 
-        // Make the REST call to update the expense
-        Toast.makeText(this, "Updated Expense ==> " + updatedExpense, Toast.LENGTH_LONG).show();
+    private Expense getUpdatedExpense() {
+        Expense expense = new Expense();
+        expense.setExpenseId(this.expense.getExpenseId());
+        expense.setExpenseType(expenseTypeSelected);
+        expense.setAmount(getEditTextFieldValue(R.id.expense_detail_amount));
+        expense.setDescription(getEditTextFieldValue(R.id.expense_detail_description));
+        expense.setDate(getEditTextFieldValue(R.id.expense_detail_expense_date));
+        expense.setComment(getEditTextFieldValue(R.id.expense_detail_comment));
+
+        return expense;
     }
 
     private String getEditTextFieldValue(int editTextFieldId) {

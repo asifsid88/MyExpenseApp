@@ -20,6 +20,9 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ExpenseFragment extends ListFragment {
+
+    private ExpenseAdapter expenseAdapter;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_expense, container, false);
@@ -29,10 +32,16 @@ public class ExpenseFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        List<Expense> expenseList = getExpenseList();
-        ExpenseAdapter expenseAdapter = new ExpenseAdapter(getActivity(), expenseList);
+        List<Expense> expenseList = getExpenseList(10);
+        expenseAdapter = new ExpenseAdapter(getActivity(), expenseList);
         setListAdapter(expenseAdapter);
         getListView().setOnItemClickListener(new ExpenseItemClickListener(getActivity(), expenseList));
+    }
+
+    public void refreshExpenseList(int expenseListSize) {
+        expenseAdapter.clear();
+        expenseAdapter.addAll(getExpenseList(expenseListSize));
+        expenseAdapter.notifyDataSetChanged();
     }
 
     private class ExpenseItemClickListener implements AdapterView.OnItemClickListener {
@@ -60,10 +69,10 @@ public class ExpenseFragment extends ListFragment {
      * TODO: Get the expense details via REST call.
      *
      */
-    private List<Expense> getExpenseList() {
+    private List<Expense> getExpenseList(int n) {
         final List<Expense> expenseList = new LinkedList<>();
 
-        for(int i=1; i<=10; i++) {
+        for(int i=1; i<=n; i++) {
             expenseList.add(getExpense(i));
         }
 

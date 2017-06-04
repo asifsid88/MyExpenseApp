@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import com.asifsid88.myexpense.app.fragments.ExpenseFragment;
 import com.asifsid88.myexpense.app.model.Expense;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,18 +36,22 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.expense_display_range, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(new ExpenseDisplayRangeSpinnerActivity());
+        spinner.setSelection(0, false);
+        spinner.setOnItemSelectedListener(new ExpenseDisplayRangeSpinnerActivity(this));
     }
 
     private class ExpenseDisplayRangeSpinnerActivity extends Activity implements AdapterView.OnItemSelectedListener {
 
-        private ExpenseDisplayRangeSpinnerActivity() {
+        private final Activity parentContext;
 
+        private ExpenseDisplayRangeSpinnerActivity(final Activity parentContext) {
+            this.parentContext = parentContext;
         }
 
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
             String noOfExpenseToShow = String.valueOf(parent.getItemAtPosition(pos));
-            // now fetch the expenses with this number and refresh the fragment
+            ExpenseFragment fragment = (ExpenseFragment) parentContext.getFragmentManager().findFragmentById(R.id.expense_fragment);
+            fragment.refreshExpenseList(Integer.parseInt(noOfExpenseToShow));
         }
 
         public void onNothingSelected(AdapterView<?> parent) {

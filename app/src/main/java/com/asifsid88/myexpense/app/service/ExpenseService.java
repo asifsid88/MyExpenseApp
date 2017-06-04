@@ -20,6 +20,10 @@ public class ExpenseService {
         this.responseHandler = new ExpenseResponseHandler(callback);
     }
 
+    public void createExpense(Expense expense) {
+        ExpenseServiceRestClient.post(WebServiceUrls.createExpense, null, responseHandler);
+    }
+
     public void updateExpense(Expense expense) {
         ExpenseServiceRestClient.get(WebServiceUrls.updateExpense, null, responseHandler);
     }

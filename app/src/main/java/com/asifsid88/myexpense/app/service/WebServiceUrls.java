@@ -7,7 +7,8 @@ package com.asifsid88.myexpense.app.service;
 interface WebServiceUrls {
     String baseUrl = "https://myexpense-asifsid88.herokuapp.com/";
 
-    String getExpenseById = baseUrl + "/expense/{expenseId}";
+    String getExpenseById = baseUrl + "expense/{expenseId}";
     String getExpenses = baseUrl + "";
-    String updateExpense = baseUrl + "/expense/1";
+    String createExpense = baseUrl + "";
+    String updateExpense = baseUrl + "expense/1";
 }

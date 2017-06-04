@@ -2,7 +2,6 @@ package com.asifsid88.myexpense.app.service.callbacks;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.util.Log;
 
 import com.asifsid88.myexpense.app.Constants;
 import com.asifsid88.myexpense.app.ExpenseDetailActivity;

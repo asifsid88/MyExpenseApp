@@ -19,6 +19,7 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
 
     private Expense expense;
     private String expenseTypeSelected;
+    private Boolean isCreateExpense;
     private ExpenseService expenseService;
 
     public ExpenseDetailEditActivity() {
@@ -35,6 +36,7 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         this.expense = (Expense) intent.getSerializableExtra(Constants.EXPENSE_MODEL);
+        this.isCreateExpense = intent.getBooleanExtra(Constants.IS_CREATE_EXPENSE, Boolean.FALSE);
         setLayoutFields();
     }
 
@@ -66,17 +68,21 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
         expenseDate.setText(textValue);
     }
 
-    public void close(View view) {
+    public void cancel(View view) {
         this.onBackPressed();
     }
 
     public void update(View view) {
-        expenseService.updateExpense(getUpdatedExpense());
+        if(isCreateExpense) {
+            expenseService.createExpense(getExpenseValuesFromLayout(null));
+        } else {
+            expenseService.updateExpense(getExpenseValuesFromLayout(this.expense.getExpenseId()));
+        }
     }
 
-    private Expense getUpdatedExpense() {
+    private Expense getExpenseValuesFromLayout(String expenseId) {
         Expense expense = new Expense();
-        expense.setExpenseId(this.expense.getExpenseId());
+        expense.setExpenseId(expenseId);
         expense.setExpenseType(expenseTypeSelected);
         expense.setAmount(getEditTextFieldValue(R.id.expense_detail_amount));
         expense.setDescription(getEditTextFieldValue(R.id.expense_detail_description));

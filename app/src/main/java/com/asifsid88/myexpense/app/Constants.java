@@ -6,4 +6,5 @@ package com.asifsid88.myexpense.app;
 
 public interface Constants {
     String EXPENSE_MODEL = "com.asifsid88.myexpense.app.listener.EXPENSE_MODEL";
+    String IS_CREATE_EXPENSE = "com.asifsid88.myexpense.app.listener.IS-CREATE_EXPENSE";
 }

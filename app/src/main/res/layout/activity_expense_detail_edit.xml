@@ -138,8 +138,8 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:onClick="close"
-            android:text="@string/expense_detail_close_button"
+            android:onClick="cancel"
+            android:text="@string/expense_detail_cancel_button"
             />
 
     </LinearLayout>

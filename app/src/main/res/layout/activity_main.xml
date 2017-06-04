@@ -6,25 +6,49 @@
     android:orientation="vertical"
     >
 
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/top_expenses"
-        android:layout_marginLeft="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        android:layout_gravity="start"
-        />
+        android:layout_height="wrap_content"
+        android:weightSum="1"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="@string/top_expenses"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_toStartOf="@+id/expense_range_selection_spinner"
+            android:layout_toLeftOf="@+id/expense_range_selection_spinner"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            />
+
+        <Spinner
+            android:id="@+id/expense_range_selection_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@android:drawable/btn_dropdown"
+            android:spinnerMode="dropdown"
+            android:layout_gravity="end"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            />
+    </RelativeLayout>
 
     <fragment
         android:id="@+id/expense_fragment"
         android:name="com.asifsid88.myexpense.app.fragments.ExpenseFragment"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_marginTop="40dp"/>
+        android:layout_marginTop="60dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

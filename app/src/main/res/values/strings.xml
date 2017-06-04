@@ -26,4 +26,11 @@
         <item>Net Banking</item>
         <item>Paytm</item>
     </string-array>
+
+    <!-- Expense Display Range -->
+    <string-array name="expense_display_range">
+        <item>10</item>
+        <item>15</item>
+        <item>20</item>
+    </string-array>
 </resources>

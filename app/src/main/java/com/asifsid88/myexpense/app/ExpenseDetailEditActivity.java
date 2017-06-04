@@ -73,6 +73,9 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
     }
 
     public void update(View view) {
+        // Do validation of fields
+
+
         if(isCreateExpense) {
             expenseService.createExpense(getExpenseValuesFromLayout(null));
         } else {

@@ -39,7 +39,10 @@
                 android:layout_height="wrap_content"
                 android:background="@android:drawable/btn_dropdown"
                 android:spinnerMode="dropdown"
-                android:layout_column="2"/>
+                android:layout_column="2"
+                android:dropDownWidth="145dp"
+                android:minWidth="166dp"
+                />
         </TableRow>
 
         <TableRow

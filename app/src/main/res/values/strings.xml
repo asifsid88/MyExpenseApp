@@ -16,7 +16,8 @@
 
     <!-- ExpenseDetailEditActivity -->
     <string name="expense_detail_heading_edit">Edit Expense Detail</string>
-    <string name="expense_detail_update_button">Update</string>
+    <string name="expense_detail_update_button_text">Update Expense</string>
+    <string name="expense_detail_save_button_text">Save Expense</string>
 
     <!-- Expense Type -->
     <string-array name="expense_type_list">

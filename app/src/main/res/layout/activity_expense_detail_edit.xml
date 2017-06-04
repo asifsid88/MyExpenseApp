@@ -130,10 +130,10 @@
         android:layout_gravity="center">
 
         <Button
+            android:id="@+id/expense_detail_create_or_update"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick="update"
-            android:text="@string/expense_detail_update_button"
             android:layout_marginRight="10dp"
             android:layout_marginEnd="10dp"
             />

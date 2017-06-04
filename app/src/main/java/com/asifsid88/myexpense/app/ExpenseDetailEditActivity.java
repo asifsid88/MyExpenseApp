@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -47,6 +48,12 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
         setTextViewContent(R.id.expense_detail_comment, expense.getComment());
         setTextViewContent(R.id.expense_detail_expense_date, expense.getDate());
         new DatePicker(this, R.id.expense_detail_expense_date, expense.getDate());
+
+        if(this.isCreateExpense) {
+            setButtonText(R.id.expense_detail_create_or_update, getResources().getString(R.string.expense_detail_save_button_text));
+        } else {
+            setButtonText(R.id.expense_detail_create_or_update, getResources().getString(R.string.expense_detail_update_button_text));
+        }
     }
 
     private void populateExpenseTypeDropDown() {
@@ -56,7 +63,7 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
         spinner.setAdapter(adapter);
         spinner.setOnItemSelectedListener(new ExpenseTypeSpinnerActivity());
 
-        String compareValue = expense.getExpenseType();
+        String compareValue = this.expense.getExpenseType();
         if (compareValue != null) {
             int spinnerPosition = adapter.getPosition(compareValue);
             spinner.setSelection(spinnerPosition);
@@ -64,8 +71,13 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
     }
 
     private void setTextViewContent(int textViewId, String textValue) {
-        TextView expenseDate = (TextView) findViewById(textViewId);
-        expenseDate.setText(textValue);
+        TextView textView = (TextView) findViewById(textViewId);
+        textView.setText(textValue);
+    }
+
+    private void setButtonText(int buttonId, String buttonTextValue) {
+        Button button = (Button) findViewById(buttonId);
+        button.setText(buttonTextValue);
     }
 
     public void cancel(View view) {
@@ -76,10 +88,10 @@ public class ExpenseDetailEditActivity extends AppCompatActivity {
         // Do validation of fields
 
 
-        if(isCreateExpense) {
-            expenseService.createExpense(getExpenseValuesFromLayout(null));
+        if(this.isCreateExpense) {
+            this.expenseService.createExpense(getExpenseValuesFromLayout(null));
         } else {
-            expenseService.updateExpense(getExpenseValuesFromLayout(this.expense.getExpenseId()));
+            this.expenseService.updateExpense(getExpenseValuesFromLayout(this.expense.getExpenseId()));
         }
     }
 

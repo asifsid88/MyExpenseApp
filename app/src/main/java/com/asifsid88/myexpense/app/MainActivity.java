@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     public void addNewExpense(View view) {
         Intent intent = new Intent(this, ExpenseDetailEditActivity.class);
         intent.putExtra(Constants.EXPENSE_MODEL, new Expense());
+        intent.putExtra(Constants.IS_CREATE_EXPENSE, Boolean.TRUE);
         startActivity(intent);
     }
 

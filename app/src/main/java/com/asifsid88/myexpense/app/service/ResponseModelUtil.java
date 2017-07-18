@@ -7,8 +7,8 @@ import com.google.gson.reflect.TypeToken;
  * Created by mhussaa on 6/2/17.
  */
 
-final class ResponseModelUtil {
-    static <T> T prepareModel(TypeToken<T> token, String rawJsonData) {
+public final class ResponseModelUtil {
+    public static <T> T prepareModel(TypeToken<T> token, String rawJsonData) {
         return new Gson().fromJson(rawJsonData, token.getType());
     }
 

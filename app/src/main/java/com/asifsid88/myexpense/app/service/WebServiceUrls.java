@@ -5,10 +5,11 @@ package com.asifsid88.myexpense.app.service;
  */
 
 interface WebServiceUrls {
-    String baseUrl = "https://myexpense-asifsid88.herokuapp.com/";
+    //String baseUrl = "https://myexpense-asifsid88.herokuapp.com/";
+    String baseUrl = "http://10.0.2.2:8080/";
 
     String getExpenseById = baseUrl + "expense/{expenseId}";
-    String getExpenses = baseUrl + "";
-    String createExpense = baseUrl + "";
+    String getExpenseListBySize = baseUrl + "expense/list/{size}";
+    String createExpense = baseUrl + "expense/create";
     String updateExpense = baseUrl + "expense/1";
 }

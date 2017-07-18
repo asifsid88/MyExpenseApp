@@ -15,13 +15,16 @@ import com.asifsid88.myexpense.app.ExpenseDetailActivity;
 import com.asifsid88.myexpense.app.R;
 import com.asifsid88.myexpense.app.adapter.ExpenseAdapter;
 import com.asifsid88.myexpense.app.model.Expense;
+import com.asifsid88.myexpense.app.service.ExpenseService;
 
-import java.util.LinkedList;
 import java.util.List;
 
 public class ExpenseFragment extends ListFragment {
 
     private ExpenseAdapter expenseAdapter;
+    private ExpenseService expenseService;
+
+    private static final Integer DEFAULT_EXPENSE_LIST_COUNT = 10;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,16 +35,32 @@ public class ExpenseFragment extends ListFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        List<Expense> expenseList = getExpenseList(10);
-        expenseAdapter = new ExpenseAdapter(getActivity(), expenseList);
-        setListAdapter(expenseAdapter);
-        getListView().setOnItemClickListener(new ExpenseItemClickListener(getActivity(), expenseList));
+        expenseService = new ExpenseService(getActivity());
+        getExpenseList(DEFAULT_EXPENSE_LIST_COUNT);
     }
 
+    /**
+     * This is called as a callback: After getting expenseList via RESTService
+     * @param expenseList
+     */
+    public void updateExpenseListFrame(List<Expense> expenseList) {
+        if(expenseAdapter == null) {
+            expenseAdapter = new ExpenseAdapter(getActivity(), expenseList);
+            setListAdapter(expenseAdapter);
+            getListView().setOnItemClickListener(new ExpenseItemClickListener(getActivity(), expenseList));
+        } else {
+            expenseAdapter.addAll(expenseList);
+            expenseAdapter.notifyDataSetChanged();
+        }
+    }
+
+    /**
+     * This is called as a callback: After selecting drop-down range count
+     * @param expenseListSize
+     */
     public void refreshExpenseList(int expenseListSize) {
         expenseAdapter.clear();
-        expenseAdapter.addAll(getExpenseList(expenseListSize));
-        expenseAdapter.notifyDataSetChanged();
+        getExpenseList(expenseListSize);
     }
 
     private class ExpenseItemClickListener implements AdapterView.OnItemClickListener {
@@ -62,32 +81,7 @@ public class ExpenseFragment extends ListFragment {
         }
     }
 
-
-
-
-    /**
-     * TODO: Get the expense details via REST call.
-     *
-     */
-    private List<Expense> getExpenseList(int n) {
-        final List<Expense> expenseList = new LinkedList<>();
-
-        for(int i=1; i<=n; i++) {
-            expenseList.add(getExpense(i));
-        }
-
-        return expenseList;
-    }
-
-    private Expense getExpense(int expenseId) {
-        Expense expense = new Expense();
-        expense.setExpenseId(String.valueOf(expenseId));
-        expense.setAmount(String.valueOf(expenseId * 10));
-        expense.setExpenseType("Paytm");
-        expense.setDescription("Lunch");
-        expense.setComment("Comment: " + expenseId);
-        expense.setDate("21/05/2017");
-
-        return expense;
+    private void getExpenseList(int n) {
+        expenseService.getExpenseList(n);
     }
 }
